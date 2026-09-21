@@ -1,0 +1,141 @@
+/* =========================================
+   Метод 1: За допомогою position
+========================================= */
+.gear-pos {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 50px;
+}
+
+.gear-pos div {
+    position: absolute; 
+    background-color: #9f9f9f;
+}
+
+.gear-pos .bar {
+    width: 40px;
+    height: 180px;
+    top: -15px; 
+    left: 55px;
+    border-radius: 5px;
+}
+
+.gear-pos .bar1 {
+}
+
+.gear-pos .bar2 {
+    transform: rotate(90deg);
+}
+
+.gear-pos .bar3 {
+    transform: rotate(45deg);
+}
+
+.gear-pos .bar4 {
+    transform: rotate(-45deg);
+}
+
+.gear-pos .core {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+}
+
+.gear-pos .hole {
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff; 
+    border-radius: 50%;
+    top: 50px;
+    left: 50px;
+}
+
+
+/* =========================================
+   Метод 2: За допомогою transform
+========================================= */
+.gear-trans {
+    width: 150px;
+    height: 150px;
+    margin: 100px 50px;
+}
+
+.gear-trans div {
+    background-color: #9f9f9f;
+    transform-origin: center center;
+}
+
+.gear-trans .bar {
+    width: 40px;
+    height: 180px;
+    border-radius: 5px;
+}
+
+.gear-trans .bar1 {
+    transform: translate(55px, -15px);
+}
+
+.gear-trans .bar2 {
+    transform: translate(55px, -195px) rotate(90deg);
+}
+
+.gear-trans .bar3 {
+    transform: translate(55px, -375px) rotate(45deg);
+}
+
+.gear-trans .bar4 {
+    transform: translate(55px, -555px) rotate(-45deg);
+}
+
+.gear-trans .core {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    transform: translate(0px, -720px);
+}
+
+.gear-trans .hole {
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transform: translate(50px, -820px);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.gear-pos:hover, .gear-trans:hover {
+    animation: spin 5s linear infinite;
+    cursor: pointer;
+}
+
+.gears-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-top: 30px;
+}
+
+.gear-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 250px;
+}
+
+.gear-pos, .gear-trans {
+    margin: 30px 0 0 0 !important;
+}
