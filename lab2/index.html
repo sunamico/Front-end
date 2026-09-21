@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>ПІБ-Савченко Руслана Володимирівна, група-ІО-44, номер лаб. роботи-2, номер варіанта-100</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .task1-container {
+            margin-bottom: 50px;
+        }
+        
+        .var10-table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.var10-table td {
+    border: 2px solid #333333;
+    padding: 15px 10px;
+    height: 40px;
+}
+
+/* Колір 1-го рядка для варіанта 10: #108f8f (nn = 10) */
+.row-1-bg {
+    background-color: #108f8f;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+/* Колір 2-го рядка для варіанта 10: #f5f510 (nn = 10) */
+.row-2-bg {
+    background-color: #f5f510;
+    color: #000000;
+    transition: all 0.3s ease;
+}
+
+.row-1-bg:hover {
+    background-color: #f5f510;
+    color: #000000;
+}
+
+.row-2-bg:hover {
+    background-color: #108f8f;
+    color: #ffffff;
+}
+</style>
+</head>
+<body>
+
+    <div class="task1-container">
+        <h2>Завдання 1 </h2>
+       <table class="var10-table">
+    <tr>
+        <td class="row-1-bg">Савченко</td>
+        <td class="row-1-bg">Руслана</td>
+        <td rowspan="2" class="row-1-bg">Володимирівна</td>
+        <td class="row-1-bg"></td>
+        <td rowspan="2" class="row-2-bg">Варіант 10</td>
+    </tr>
+    <tr>
+        <td colspan="2" class="row-2-bg">Група ІО-44</td>
+        <td class="row-2-bg">Лабораторна №2</td>
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+        <td colspan="3"></td>
+    </tr>
+</table>
+    </div>
+
+  <div class="task2-container">
+        <h2>Завдання 2 </h2>
+        
+        <div class="gears-row">
+            <div class="gear-card">
+                <h3>1. За допомогою position</h3>
+                <div class="gear-pos">
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
+                    <div class="bar bar4"></div>
+                    <div class="core"></div>
+                    <div class="hole"></div>
+                </div>
+            </div>
+
+            <div class="gear-card">
+                <h3>2. За допомогою transform</h3>
+                <div class="gear-trans">
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
+                    <div class="bar bar4"></div>
+                    <div class="core"></div>
+                    <div class="hole"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
