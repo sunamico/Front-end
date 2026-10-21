@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Савченко Руслана Володимирівна, ІО-44, Лабораторна робота №5, Варіант 100</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 520px; margin: 2rem auto; padding: 0 1rem; color: #1f2933; }
+  table { border-collapse: collapse; margin-top: 1rem; }
+  td { width: 56px; height: 56px; text-align: center; border: 1px solid #8a96a3; user-select: none; }
+  td.target { outline: 3px solid #1f2933; outline-offset: -3px; cursor: pointer; font-weight: 700; }
+  label { display: flex; align-items: center; gap: 10px; }
+  input[type=color] { width: 48px; height: 32px; padding: 0; }
+</style>
+</head>
+<body>
+<h1>Лабораторна робота №5. Завдання 2</h1>
+<p>Обрана клітинка (варіант 10) обведена. Наведення – випадковий колір, клік – колір із палітри,
+подвійний клік – зміна кольору клітинок у її рядку через одну, починаючи з неї.</p>
+<label>Палітра: <input type="color" id="palette" value="#2e7d32"></label>
+<table id="grid"></table>
+
+<script>
+  const N = 6;          // розмір таблиці 6x6
+  const VARIANT = 10;   // номер клітинки = номер варіанта (100 mod 10 -> 10)
+  const grid = document.getElementById('grid');
+  const palette = document.getElementById('palette');
+
+  // Заповнення клітинок числами 1..36 по рядках
+  for (let r = 0; r < N; r++) {
+    const tr = grid.insertRow();
+    for (let c = 0; c < N; c++) tr.insertCell().textContent = r * N + c + 1;
+  }
+
+  const cell = grid.rows[Math.floor((VARIANT - 1) / N)].cells[(VARIANT - 1) % N];
+  cell.classList.add('target');
+
+  const randomColor = () =>
+    '#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0');
+
+  // Наведення - випадковий колір
+  cell.addEventListener('mouseover', () => { cell.style.backgroundColor = randomColor(); });
+
+  // Click - колір, обраний з палітри
+  cell.addEventListener('click', () => { cell.style.backgroundColor = palette.value; });
+
+  // dblClick - клітинки в рядку, починаючи з обраної, через одну
+  cell.addEventListener('dblclick', () => {
+    const row = cell.parentElement;
+    for (let c = cell.cellIndex; c < N; c += 2) {
+      row.cells[c].style.backgroundColor = palette.value;
+    }
+  });
+</script>
+</body>
+</html>
