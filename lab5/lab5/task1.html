@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Савченко Руслана Володимирівна, ІО-44, Лабораторна робота №5, Варіант 100</title>
+<style>
+  body { margin: 0; padding: 48px 16px; font-family: Arial, sans-serif; color: #222; }
+  .page { display: flex; justify-content: center; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+  .form-box { width: 320px; }
+  h2 { font-family: "Times New Roman", serif; text-align: center; margin: 24px 0 28px; }
+  table { width: 100%; border-collapse: collapse; }
+  td { padding: 0 0 20px; }
+  input { width: 100%; height: 40px; padding: 0 12px; box-sizing: border-box; font: 13px Arial, sans-serif;
+          border: 1px solid #8a8a8a; border-radius: 2px; }
+  input::placeholder { color: #777; }
+  button { width: 100%; height: 40px; background: #f2f2f2; border: 1px solid #ccc; border-radius: 2px;
+           font: 13px Arial, sans-serif; color: #555; cursor: pointer; }
+  button:hover { background: #e8e8e8; }
+  .msg { display: none; margin-top: 4px; font-size: 12px; color: #c62828; }
+  tr.error input { border: 2px solid #c62828; background: #fdecec; }
+  tr.error .msg { display: block; }
+  .result { width: 240px; font-family: "Times New Roman", serif; }
+  .result h3 { margin: 24px 0 14px; font-size: 18px; }
+  .result p { margin: 0 0 12px; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="form-box">
+    <h2>Форма для заповнення</h2>
+    <form id="form" novalidate>
+      <table>
+        <tr data-field="pib" data-label="ПІБ"><td>
+          <input type="text" placeholder="ПІБ"><span class="msg">Формат: Прізвище І.Б. (Шевченко Т.Г.)</span></td></tr>
+        <tr data-field="group" data-label="Група"><td>
+          <input type="text" placeholder="Група"><span class="msg">Формат: ТТ-ЧЧ (ІП-21)</span></td></tr>
+        <tr data-field="phone" data-label="Телефон"><td>
+          <input type="text" placeholder="Телефон"><span class="msg">Формат: (ЧЧЧ)-ЧЧЧ-ЧЧ-ЧЧ</span></td></tr>
+        <tr data-field="address" data-label="Адреса"><td>
+          <input type="text" placeholder="Адреса"><span class="msg">Формат: м. ЧЧЧЧЧЧ</span></td></tr>
+        <tr data-field="email" data-label="e-mail"><td>
+          <input type="text" placeholder="e-mail"><span class="msg">Формат: текст@текст.com</span></td></tr>
+      </table>
+      <button type="submit">Підтвердити</button>
+    </form>
+  </div>
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+  // Регулярні вирази (Т - текст, Ч - число)
+  const rules = {
+    pib:     /^[А-ЯІЇЄҐ][а-яіїєґ'’-]+ [А-ЯІЇЄҐ]\.[А-ЯІЇЄҐ]\.$/,   // ТТТТТТ Т.Т.
+    group:   /^[А-ЯІЇЄҐA-Z]{2}-\d{2}$/,                           // ТТ-ЧЧ
+    phone:   /^\(\d{3}\)-\d{3}-\d{2}-\d{2}$/,                     // (ЧЧЧ)-ЧЧЧ-ЧЧ-ЧЧ
+    address: /^м\. \d{6}$/,                                       // м. ЧЧЧЧЧЧ
+    email:   /^[A-Za-z]+@[A-Za-z]+\.com$/                         // ТТТТТТ@ТТТТТ.com
+  };
+
+  document.getElementById('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const result = document.getElementById('result');
+    let allValid = true;
+    const rows = [];
+
+    document.querySelectorAll('tr[data-field]').forEach(tr => {
+      const value = tr.querySelector('input').value.trim();
+      const valid = rules[tr.dataset.field].test(value);
+      tr.classList.toggle('error', !valid);        // виділяємо рядок з помилкою
+      if (!valid) allValid = false;
+      rows.push([tr.dataset.label, value]);
+    });
+
+    result.textContent = '';
+    if (!allValid) return;
+
+    // Усе правильно - виводимо введені дані праворуч від форми
+    const h = document.createElement('h3');
+    h.textContent = 'Введені дані';
+    result.appendChild(h);
+    rows.forEach(([label, value]) => {
+      const p = document.createElement('p');
+      const b = document.createElement('b');
+      b.textContent = label + ': ';
+      p.append(b, value);
+      result.appendChild(p);
+    });
+  });
+</script>
+</body>
+</html>
