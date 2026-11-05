@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Савченко Руслана Володимирівна, ІО-44, Лабораторна робота №6, Варіант 100</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a2a20;          
+    --bg-glow: #134536;
+    --card: #11392c;
+    --line: #2a6b55;
+    --text: #f3fbf5;       
+    --muted: #a8d8bf;      
+    --accent: #8fe3b5;
+    --accent-ink: #072218;
+    --error: #ffc2b8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh;
+    font-family: Onest, system-ui, sans-serif; line-height: 1.5; color: var(--text);
+    background: radial-gradient(1100px 520px at 12% -8%, var(--bg-glow), var(--bg));
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 56px 20px 72px; }
+  h1 {
+    margin: 0 0 12px; max-width: 18ch;
+    font: 700 clamp(1.7rem, 4.4vw, 2.7rem)/1.15 Unbounded, Onest, sans-serif; letter-spacing: -.01em;
+  }
+  .lead { margin: 0 0 28px; max-width: 56ch; color: var(--muted); font-size: 1.05rem; }
+  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-bottom: 36px; }
+  button {
+    font: 700 1rem Onest, system-ui, sans-serif; padding: 13px 28px; border: 0; border-radius: 10px;
+    background: var(--accent); color: var(--accent-ink); cursor: pointer;
+  }
+  button:hover:not(:disabled) { background: #b4f0cd; }
+  button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  button:disabled { opacity: .65; cursor: progress; }
+  #status { font-weight: 500; color: var(--muted); }
+  #status.ok { color: var(--accent); }
+  #status.error { color: var(--error); }
+  #users { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; }
+  .hint { grid-column: 1 / -1; margin: 0; padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+          animation: show .35s ease-out both; }
+  .card img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--bg); }
+  .card dl { margin: 0; padding: 16px 16px 6px; }
+  dt { font-size: .82rem; font-weight: 500; color: var(--muted); }
+  dd { margin: 2px 0 14px; font-size: .98rem; font-weight: 500; overflow-wrap: anywhere; }
+  @keyframes show { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .card { animation: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Випадкові користувачі з API</h1>
+  <p class="lead">Дані у форматі JSON завантажуються з randomuser.me за допомогою fetch і promise.</p>
+  <div class="controls">
+    <button id="download" type="button">Завантажити дані</button>
+    <span id="status" role="status" aria-live="polite"></span>
+  </div>
+  <div id="users">
+    <p class="hint">Натисніть «Завантажити дані», щоб отримати п’ять користувачів.</p>
+  </div>
+</div>
+
+<script>
+  const API_URL = 'https://randomuser.me/api/?results=5';
+  const button = document.getElementById('download');
+  const statusEl = document.getElementById('status');
+  const list = document.getElementById('users');
+
+  // Поля варіанта 100 -> варіант 20 (табл. 2, рядки 1, 6, 9, 7, 4):
+  // picture (фото вище), postcode, coordinates, email, city
+  const fields = [
+    ['Поштовий індекс', user => user.location.postcode],
+    ['Координати', user => user.location.coordinates.latitude + ', ' + user.location.coordinates.longitude],
+    ['E-mail', user => user.email],
+    ['Місто', user => user.location.city]
+  ];
+
+  function setStatus(text, type) {
+    statusEl.textContent = text;
+    statusEl.className = type || '';
+  }
+
+  // Створення картки одного користувача
+  function createCard(user) {
+    const card = document.createElement('article');
+    card.className = 'card';
+
+    const img = document.createElement('img');
+    img.src = user.picture.large;
+    img.alt = 'Фото користувача';
+
+    const dl = document.createElement('dl');
+    fields.forEach(([label, getValue]) => {
+      const dt = document.createElement('dt');
+      dt.textContent = label;
+      const dd = document.createElement('dd');
+      dd.textContent = getValue(user);
+      dl.append(dt, dd);
+    });
+
+    card.append(img, dl);
+    return card;
+  }
+
+  button.addEventListener('click', () => {
+    button.disabled = true;
+    setStatus('Завантаження…');
+
+    fetch(API_URL)
+      .then(response => {
+        if (!response.ok) throw new Error('код відповіді ' + response.status);
+        return response.json();                       // розбір JSON
+      })
+      .then(data => {
+        list.replaceChildren(...data.results.map(createCard));
+        setStatus('success!', 'ok');
+      })
+      .catch(error => {
+        setStatus('Не вдалося завантажити дані: ' + error.message + '. Спробуйте ще раз.', 'error');
+      })
+      .finally(() => {
+        button.disabled = false;
+      });
+  });
+</script>
+</body>
+</html>
