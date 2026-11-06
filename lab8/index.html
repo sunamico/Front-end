@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Лабораторна робота №8 студентки Савченко Р. В., група ІО-44">
+    <title>Савченко Руслана Володимирівна, група ІО-44, лаб. №8, варіант 100</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Шапка з навігацією та головний банер -->
+    <section class="hero" id="home">
+        <header class="header">
+            <a class="logo" href="#home">Аукціон</a>
+            <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Відкрити меню">☰</button>
+            <nav class="menu" id="menu">
+                <ul>
+                    <li><a href="#home" class="active">Головна</a></li>
+                    <li><a href="#auctions">Купити</a></li>
+                    <li><a href="#auctions" id="sell-link">Продати</a></li>
+                    <li class="has-sub">
+                        <a href="#how">Послуги ▾</a>
+                        <ul class="sub">
+                            <li><a href="#how">Як це працює</a></li>
+                            <li><a href="#about">Підтримка</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#about">Про нас</a></li>
+                    <li><a href="#reviews">Відгуки</a></li>
+                    <li><a href="#contacts">Контакти</a></li>
+                </ul>
+                <button class="sign" id="auth-btn" type="button">Увійти / Реєстрація</button>
+            </nav>
+        </header>
+        <div class="hero-body">
+            <h1>Найкраще місце, щоб купувати й продавати</h1>
+            <p>Робіть ставки на улюблені речі або виставляйте власні лоти. Усе просто, швидко й прозоро.</p>
+            <button class="btn" id="hero-register" type="button">Зареєструватися</button>
+        </div>
+        <div class="hero-art" aria-hidden="true">🛒</div>
+    </section>
+
+    <main>
+        <!-- Поточні аукціони (дані завантажуються з JSON) -->
+        <section class="section" id="auctions">
+            <p class="eyebrow">Аукціони</p>
+            <h2>Поточні аукціони</h2>
+            <p class="mode" id="mode"></p>
+            <div class="toolbar">
+                <input type="search" id="search" placeholder="Пошук лотів за назвою" aria-label="Пошук лотів">
+                <select id="sort" aria-label="Сортування">
+                    <option value="default">Без сортування</option>
+                    <option value="ending">Скоро завершаться</option>
+                    <option value="price-asc">Ціна: від меншої</option>
+                    <option value="price-desc">Ціна: від більшої</option>
+                    <option value="bids">Найбільше ставок</option>
+                </select>
+            </div>
+            <div class="chips" id="chips"></div>
+            <div class="cards" id="cards"><p class="empty">Завантаження лотів…</p></div>
+        </section>
+
+        <!-- Як це працює -->
+        <section class="section" id="how">
+            <p class="eyebrow">Як це працює?</p>
+            <h2>Як це працює</h2>
+            <ol class="steps">
+                <li><span class="icon">👤</span><h3>Реєстрація</h3><p>Створіть акаунт за хвилину: потрібна лише електронна пошта.</p></li>
+                <li><span class="icon">💵</span><h3>Купуйте або продавайте</h3><p>Обирайте лоти в каталозі або виставляйте власні речі.</p></li>
+                <li><span class="icon">🥂</span><h3>Зробіть ставку</h3><p>Пропонуйте свою ціну та стежте за змінами торгів.</p></li>
+                <li><span class="icon">🏆</span><h3>Вигравайте</h3><p>Остання найвища ставка перемагає, а лот стає вашим.</p></li>
+            </ol>
+        </section>
+
+        <!-- Про нас -->
+        <section class="section about" id="about">
+            <div class="about-pic" aria-hidden="true">🛍️</div>
+            <div class="about-text">
+                <p class="eyebrow">Про нас</p>
+                <h2>Про нас</h2>
+                <ul class="features">
+                    <li><span class="icon">✈️</span><div><h3>Швидка підтримка</h3><p>Відповідаємо на запитання протягом кількох хвилин.</p></div></li>
+                    <li><span class="icon">😊</span><div><h3>Задоволені клієнти</h3><p>Тисячі успішних угод і позитивних відгуків.</p></div></li>
+                    <li><span class="icon">🛟</span><div><h3>Підтримка 24/7</h3><p>Команда на зв'язку цілодобово, навіть у вихідні.</p></div></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Відгуки -->
+    <section class="reviews" id="reviews">
+        <p class="eyebrow light">Відгуки</p>
+        <h2>Задоволені клієнти</h2>
+        <div class="review-grid">
+            <blockquote class="review">
+                <div class="who"><span class="avatar">ОК</span><div><strong>Олена Коваль</strong><span>Дизайнерка</span></div></div>
+                <p>Виставила на торги кілька речей і за тиждень усе продалося. Дуже зручний інтерфейс і швидка підтримка.</p>
+            </blockquote>
+            <blockquote class="review">
+                <div class="who"><span class="avatar">ПМ</span><div><strong>Петро Мельник</strong><span>Програміст</span></div></div>
+                <p>Виграв ноутбук на аукціоні за вдалою ціною. Усе чесно, прозоро й без прихованих комісій.</p>
+            </blockquote>
+        </div>
+    </section>
+
+    <footer class="footer" id="contacts">
+        <p>Контакти: info@auction.example · +38 (044) 000-00-00</p>
+        <p>© 2026 Аукціон. Лабораторна робота №8, Савченко Руслана, ІО-44</p>
+    </footer>
+
+    <!-- Вікно реєстрації / входу -->
+    <dialog id="auth-dialog">
+        <form id="auth-form" novalidate>
+            <h2 id="auth-title">Реєстрація</h2>
+            <label class="field reg"><span>Ім'я та прізвище</span>
+                <input name="name" data-rule="name" autocomplete="name"><small>Наприклад: Руслана Савченко</small></label>
+            <label class="field"><span>E-mail</span>
+                <input name="email" data-rule="email" autocomplete="email"><small>Формат: name@example.com</small></label>
+            <label class="field reg"><span>Телефон</span>
+                <input name="phone" data-rule="phone" autocomplete="tel"><small>Формат: +380XXXXXXXXX</small></label>
+            <label class="field"><span>Пароль</span>
+                <input type="password" name="password" data-rule="password" autocomplete="current-password"><small>Щонайменше 6 символів, літера й цифра</small></label>
+            <p class="form-error" id="auth-error" role="alert"></p>
+            <div class="actions">
+                <button type="button" class="ghost" data-close>Скасувати</button>
+                <button type="submit" class="btn">Продовжити</button>
+            </div>
+            <p class="switch"><a href="#" id="auth-switch">Вже є акаунт? Увійти</a></p>
+        </form>
+    </dialog>
+
+    <!-- Вікно ставки -->
+    <dialog id="bid-dialog">
+        <form id="bid-form" novalidate>
+            <h2 id="bid-title">Ставка</h2>
+            <p id="bid-info"></p>
+            <label class="field"><span>Ваша ставка, ₴</span>
+                <input name="amount" data-rule="money" inputmode="numeric"><small id="bid-hint"></small></label>
+            <p class="form-error" id="bid-error" role="alert"></p>
+            <div class="actions">
+                <button type="button" class="ghost" data-close>Скасувати</button>
+                <button type="submit" class="btn">Зробити ставку</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Вікно додавання лота -->
+    <dialog id="sell-dialog">
+        <form id="sell-form" novalidate>
+            <h2>Виставити лот</h2>
+            <label class="field"><span>Назва</span>
+                <input name="name" data-rule="title"><small>Від 3 до 40 символів</small></label>
+            <label class="field"><span>Категорія</span>
+                <select name="category">
+                    <option>Електроніка</option><option>Одяг</option><option>Взуття</option><option>Аксесуари</option><option>Інше</option>
+                </select></label>
+            <label class="field"><span>Піктограма</span>
+                <select name="emoji">
+                    <option>🎧</option><option>📷</option><option>🎸</option><option>📚</option>
+                    <option>🚲</option><option>🎮</option><option>⌚</option><option>👜</option>
+                </select></label>
+            <label class="field"><span>Початкова ціна, ₴</span>
+                <input name="price" data-rule="money" inputmode="numeric"><small>Ціле число більше нуля</small></label>
+            <label class="field"><span>Тривалість торгів</span>
+                <select name="minutes">
+                    <option value="30">30 хвилин</option><option value="60">1 година</option>
+                    <option value="180">3 години</option><option value="720">12 годин</option>
+                </select></label>
+            <p class="form-error" id="sell-error" role="alert"></p>
+            <div class="actions">
+                <button type="button" class="ghost" data-close>Скасувати</button>
+                <button type="submit" class="btn">Виставити</button>
+            </div>
+        </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

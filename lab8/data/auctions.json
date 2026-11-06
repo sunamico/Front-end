@@ -1,0 +1,10 @@
+[
+  { "id": 1, "name": "Рожеві кросівки", "category": "Взуття", "emoji": "👟", "price": 1450, "bids": 4, "endsInMinutes": 45 },
+  { "id": 2, "name": "Окуляри для комп'ютера", "category": "Аксесуари", "emoji": "👓", "price": 650, "bids": 10, "endsInMinutes": 130 },
+  { "id": 3, "name": "Чорна шкіряна куртка", "category": "Одяг", "emoji": "🧥", "price": 4800, "bids": 24, "endsInMinutes": 300 },
+  { "id": 4, "name": "Ноутбук 15 дюймів", "category": "Електроніка", "emoji": "💻", "price": 42000, "bids": 224, "endsInMinutes": 25 },
+  { "id": 5, "name": "Планшет", "category": "Електроніка", "emoji": "📱", "price": 18500, "bids": 11, "endsInMinutes": 720 },
+  { "id": 6, "name": "Шкіряні кеди", "category": "Взуття", "emoji": "🥾", "price": 1900, "bids": 4, "endsInMinutes": 90 },
+  { "id": 7, "name": "Моноблок", "category": "Електроніка", "emoji": "🖥️", "price": 48000, "bids": 293, "endsInMinutes": 600 },
+  { "id": 8, "name": "Смарт-годинник", "category": "Електроніка", "emoji": "⌚", "price": 11000, "bids": 123, "endsInMinutes": 180 }
+]

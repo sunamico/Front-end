@@ -1,0 +1,116 @@
+{
+  "lots": [
+    {
+      "id": 1,
+      "name": "Рожеві кросівки",
+      "category": "Взуття",
+      "emoji": "👟",
+      "price": 1450,
+      "bids": 4,
+      "endsInMinutes": 45,
+      "endsAt": 1793963550369
+    },
+    {
+      "id": 2,
+      "name": "Окуляри для комп'ютера",
+      "category": "Аксесуари",
+      "emoji": "👓",
+      "price": 650,
+      "bids": 10,
+      "endsInMinutes": 130,
+      "endsAt": 1793968650369
+    },
+    {
+      "id": 3,
+      "name": "Чорна шкіряна куртка",
+      "category": "Одяг",
+      "emoji": "🧥",
+      "price": 4800,
+      "bids": 24,
+      "endsInMinutes": 300,
+      "endsAt": 1793978850369
+    },
+    {
+      "id": 4,
+      "name": "Ноутбук 15 дюймів",
+      "category": "Електроніка",
+      "emoji": "💻",
+      "price": 42000,
+      "bids": 224,
+      "endsInMinutes": 25,
+      "endsAt": 1793962350369
+    },
+    {
+      "id": 5,
+      "name": "Планшет",
+      "category": "Електроніка",
+      "emoji": "📱",
+      "price": 18500,
+      "bids": 11,
+      "endsInMinutes": 720,
+      "endsAt": 1794004050369
+    },
+    {
+      "id": 6,
+      "name": "Шкіряні кеди",
+      "category": "Взуття",
+      "emoji": "🥾",
+      "price": 1950,
+      "bids": 5,
+      "endsInMinutes": 90,
+      "endsAt": 1793966250369,
+      "lastBidder": "Катерина Мін"
+    },
+    {
+      "id": 7,
+      "name": "Моноблок",
+      "category": "Електроніка",
+      "emoji": "🖥️",
+      "price": 48000,
+      "bids": 293,
+      "endsInMinutes": 600,
+      "endsAt": 1793996850369
+    },
+    {
+      "id": 8,
+      "name": "Смарт-годинник",
+      "category": "Електроніка",
+      "emoji": "⌚",
+      "price": 11000,
+      "bids": 123,
+      "endsInMinutes": 180,
+      "endsAt": 1793971650369
+    },
+    {
+      "id": 9,
+      "name": "Холодильник ",
+      "category": "Електроніка",
+      "emoji": "🚲",
+      "price": 1000,
+      "bids": 0,
+      "seller": "Катерина Мін",
+      "endsInMinutes": 180,
+      "endsAt": 1793972205496
+    },
+    {
+      "id": 10,
+      "name": "Приставка",
+      "category": "Електроніка",
+      "emoji": "🎮",
+      "price": 15000,
+      "bids": 0,
+      "seller": "Катерина Мін",
+      "endsInMinutes": 720,
+      "endsAt": 1794004738227
+    }
+  ],
+  "users": [
+    {
+      "name": "Катерина Мін",
+      "email": "vnviapoj@gmail.com",
+      "phone": "+380439929291",
+      "salt": "b17e57390d9a6456a2145c3d7e043275",
+      "hash": "0ac7ab849403d1c30ffa1aae75896c4b4049b3962ad2d8706659e63a367e2978"
+    }
+  ]
+}
